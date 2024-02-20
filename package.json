@@ -1,10 +1,13 @@
 {
   "scripts": {
-    "dev": "bun run --hot src/index.ts"
+    "dev": "bun run --hot server.ts"
   },
   "dependencies": {
+    "cls-hooked": "^4.2.2",
     "hono": "^3.12.8",
     "mongoose": "^8.1.1",
+    "pg": "^8.11.3",
+    "sequelize": "^6.37.1",
     "supertest": "^6.3.4"
   },
   "devDependencies": {

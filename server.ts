@@ -2,16 +2,17 @@ import { Hono } from "hono";
 import { logger } from "hono/logger";
 import { prettyJSON } from "hono/pretty-json";
 import { cors } from "hono/cors";
-import { compress } from "hono/compress";
-import { errorHandle, notFoundHandle } from "./middlewares";
+import { errorHandle, notFoundHandle } from "./src/middlewares";
+import connectDB from "./src/configs/db";
 
 // Initiate Hono
 const app = new Hono().basePath("/api/v1");
 
-// TODO config DB
+// connect to DB
+connectDB()
 
 // Initialize Middleware
-app.use("*", logger(), prettyJSON(), compress());
+app.use("*", logger(), prettyJSON());
 
 // Cors
 app.use(
@@ -23,9 +24,7 @@ app.use(
 );
 
 // Home Route
-app.get("/", (c) => {
-  c.text("Hellow Murz!");
-});
+app.get("/", (c) => c.text("Hellow Murz!"));
 
 // TODO User Route
 // TODO Repository Route
